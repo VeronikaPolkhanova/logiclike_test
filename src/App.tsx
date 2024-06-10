@@ -50,12 +50,10 @@ function App() {
   return (
     <div className="App">
       <Courses
-        {...{
-          selectedCourses,
-          selectTag,
-          selected,
-          tags,
-        }}
+        selectedCourses={selectedCourses}
+        selectTag={selectTag}
+        selected={selected}
+        tags={tags}
       />
     </div>
   );
