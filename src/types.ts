@@ -3,18 +3,18 @@ export interface ICourse {
   id: string;
   image: string;
   bgColor: string;
-  tags: Array<string>;
+  tags: string[];
 }
 
 export interface ICoursesProps {
   selected: string;
-  tags: Array<string>;
-  selectedCourses: Array<ICourse>;
+  tags: string[];
+  selectedCourses: ICourse[];
   selectTag: (tag: string) => void;
 }
 
 export interface ISwitcherProps {
-  tags: Array<string>;
+  tags: string[];
   selected: string;
   selectTag: (tag: string) => void;
 }

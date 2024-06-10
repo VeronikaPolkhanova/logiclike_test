@@ -7,10 +7,10 @@ import findUnique from "./helpers/findUnique";
 
 function App() {
   const [isError, setError] = useState(false);
-  const [courses, setCourses] = useState<Array<ICourse>>([]);
-  const [selectedCourses, setSelectedCourses] = useState<Array<ICourse>>([]);
+  const [tags, setTags] = useState<string[]>([]);
+  const [courses, setCourses] = useState<ICourse[]>([]);
   const [selected, setSelected] = useState<string>(ALL_TAGS);
-  const [tags, setTags] = useState<Array<string>>([]);
+  const [selectedCourses, setSelectedCourses] = useState<ICourse[]>([]);
 
   const getApiData = useCallback(
     () =>
@@ -19,7 +19,7 @@ function App() {
         .then((result) => {
           setCourses(result);
           setSelectedCourses(result);
-          const resultTags = result.map(({ tags }: any) => tags).flat();
+          const resultTags = result.map(({ tags }: ICourse) => tags).flat();
           setTags([ALL_TAGS, ...findUnique(resultTags)]);
         })
         .catch(() => setError(true)),
@@ -42,19 +42,21 @@ function App() {
   );
 
   useEffect(() => {
-    if (!courses.length) getApiData();
-  }, [courses, getApiData]);
+    getApiData();
+  }, [getApiData]);
 
-  const state = {
-    selectedCourses,
-    selectTag,
-    selected,
-    tags,
-  };
+  if (isError) return <h1>Something wrong</h1>;
 
   return (
     <div className="App">
-      {isError ? <h1>Something wrong</h1> : <Courses {...state} />}
+      <Courses
+        {...{
+          selectedCourses,
+          selectTag,
+          selected,
+          tags,
+        }}
+      />
     </div>
   );
 }
