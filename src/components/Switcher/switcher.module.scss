@@ -1,0 +1,27 @@
+$borderColor: #cfcfe4;
+$fontColor: #39414b;
+$activeFontColor: #ffffff;
+$activeBgColor: #5fbf77;
+
+.container {
+  height: fit-content;
+  margin: 0;
+  border-radius: 18px;
+  border: 1px solid $borderColor;
+  padding: 12px;
+
+  & .active {
+    background-color: $activeBgColor;
+    color: $activeFontColor;
+    border-radius: 12px;
+  }
+
+  & li {
+    list-style: none;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 800;
+    padding: 12px;
+    color: $fontColor;
+  }
+}
