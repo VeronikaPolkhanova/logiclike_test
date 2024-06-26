@@ -26,20 +26,17 @@ function App() {
     []
   );
 
-  const selectTag = useCallback(
-    (tag: string) => {
-      setSelected(tag);
-      if (tag === ALL_TAGS) {
-        setSelectedCourses(courses);
-        return;
-      }
-      const selectedCourses = courses.filter((course: ICourse) =>
-        course.tags.includes(tag)
-      );
-      setSelectedCourses(selectedCourses);
-    },
-    [courses]
-  );
+  const selectTag = (tag: string) => {
+    setSelected(tag);
+    if (tag === ALL_TAGS) {
+      setSelectedCourses(courses);
+      return;
+    }
+    const selectedCourses = courses.filter((course: ICourse) =>
+      course.tags.includes(tag)
+    );
+    setSelectedCourses(selectedCourses);
+  };
 
   useEffect(() => {
     getApiData();
